@@ -36,10 +36,10 @@ namespace Core.DataAccess.EntityFramework
             context.SaveChanges();
         }
 
-        public void Delete(TEntity entity)
+        public void Delete(Expression<Func<TEntity, bool>> filter)
         {
             using var context = new TContext();
-            context.Remove(entity);
+            context.Remove(filter);
             context.SaveChanges();
         }
 

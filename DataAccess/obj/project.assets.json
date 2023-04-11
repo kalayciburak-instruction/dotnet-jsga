@@ -272,6 +272,9 @@
       "Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "7.0.3"
+        },
         "compile": {
           "bin/placeholder/Core.dll": {}
         },
