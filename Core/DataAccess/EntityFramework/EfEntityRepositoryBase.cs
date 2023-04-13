@@ -16,7 +16,6 @@ namespace Core.DataAccess.EntityFramework
         public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
         {
             using var context = new TContext();
-
             return filter == null
                 ? context.Set<TEntity>().ToList()
                 : context.Set<TEntity>().Where(filter).ToList();
@@ -36,10 +35,11 @@ namespace Core.DataAccess.EntityFramework
             context.SaveChanges();
         }
 
-        public void Delete(Expression<Func<TEntity, bool>> filter)
+        public void Delete(int id)
         {
             using var context = new TContext();
-            context.Remove(filter);
+            var entity = context.Set<TEntity>().Find(id);
+            context.Set<TEntity>().Remove(entity);
             context.SaveChanges();
         }
 

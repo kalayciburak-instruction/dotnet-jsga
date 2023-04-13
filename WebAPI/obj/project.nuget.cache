@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "yzrvI1bjlj7TCAkEqtekM9NGDwL+49dOV2APqspNzPefs3aakeQfTY4BMpxElQilaK6xGPjTH7e6RBVJIygexg==",
+  "dgSpecHash": "DSvys67raz8+kX4DUorL4oCvLVEkx6p1Wh1P+NKKShvkWxmnta1p86d/CtinxOhilg0jR4ysMeHt91aajgoS0Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\Burak\\Desktop\\Coder\\C#\\RentACar-Backend\\WebAPI\\WebAPI.csproj",
   "expectedPackageFiles": [
@@ -9,9 +9,9 @@
     "C:\\Users\\Burak\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.4\\microsoft.aspnetcore.openapi.7.0.4.nupkg.sha512",
     "C:\\Users\\Burak\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.1\\microsoft.bcl.hashcode.1.1.1.nupkg.sha512",
     "C:\\Users\\Burak\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
-    "C:\\Users\\Burak\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.3\\microsoft.entityframeworkcore.7.0.3.nupkg.sha512",
-    "C:\\Users\\Burak\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.3\\microsoft.entityframeworkcore.abstractions.7.0.3.nupkg.sha512",
-    "C:\\Users\\Burak\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.3\\microsoft.entityframeworkcore.analyzers.7.0.3.nupkg.sha512",
+    "C:\\Users\\Burak\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.4\\microsoft.entityframeworkcore.7.0.4.nupkg.sha512",
+    "C:\\Users\\Burak\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.4\\microsoft.entityframeworkcore.abstractions.7.0.4.nupkg.sha512",
+    "C:\\Users\\Burak\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.4\\microsoft.entityframeworkcore.analyzers.7.0.4.nupkg.sha512",
     "C:\\Users\\Burak\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\7.0.3\\microsoft.entityframeworkcore.relational.7.0.3.nupkg.sha512",
     "C:\\Users\\Burak\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\Burak\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\7.0.0\\microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",

@@ -15,3 +15,5 @@ C:\Users\Burak\Desktop\Coder\C#\RentACar-Backend\DataAccess\obj\Debug\net7.0\Dat
 C:\Users\Burak\Desktop\Coder\C#\RentACar-Backend\DataAccess\obj\Debug\net7.0\refint\DataAccess.dll
 C:\Users\Burak\Desktop\Coder\C#\RentACar-Backend\DataAccess\obj\Debug\net7.0\DataAccess.pdb
 C:\Users\Burak\Desktop\Coder\C#\RentACar-Backend\DataAccess\obj\Debug\net7.0\ref\DataAccess.dll
+C:\Users\Burak\Desktop\Coder\C#\RentACar-Backend\DataAccess\bin\Debug\net7.0\DataAccess.runtimeconfig.json
+C:\Users\Burak\Desktop\Coder\C#\RentACar-Backend\DataAccess\obj\Debug\net7.0\DataAccess.genruntimeconfig.cache
