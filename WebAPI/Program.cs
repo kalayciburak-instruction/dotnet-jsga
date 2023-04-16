@@ -1,13 +1,9 @@
-﻿
-
-using Business.Abstract;
+﻿using Business.Abstract;
 using Business.Concrete;
-using Core.DataAccess;
-using Core.DataAccess.EntityFramework;
+using Business.Rules;
+using Business.Rules.Validation.FluentValidation;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
-using Entities;
-using Microsoft.AspNetCore.Cors.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,8 +11,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddScoped<IBrandDal, EfBrandDal>()
-                .AddScoped<IBrandService, BrandManager>();
+builder.Services.AddSingleton<IBrandDal, EfBrandDal>()
+                .AddSingleton<IBrandService, BrandManager>()
+                .AddSingleton<ICarDal, EfCarDal>()
+                .AddSingleton<ICarService, CarManager>()
+                .AddSingleton<BrandBusinessRules>()
+                .AddSingleton<BrandValidator>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

@@ -1,20 +1,13 @@
-﻿using Core.Utilities.Results;
-using Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Entities;
 
-namespace Business.Abstract
+namespace Business.Abstract;
+
+public interface IBrandService
 {
-    public interface IBrandService
-    {
-        List<Brand> GetAll();
-        Brand GetById(int id);
-        Brand GetByName(string name);
-        void Add(Brand brand);
-        void Update(Brand brand);
-        void Delete(int id);
-    }
+    List<Brand> GetAll();
+    Brand GetById(int id);
+    Brand GetByName(string name);
+    void Add(Brand brand);
+    void Update(Brand brand);
+    void Delete(int id);
 }

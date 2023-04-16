@@ -1,82 +1,56 @@
-﻿using Business.Abstract;
+﻿using System.Globalization;
+using Business.Abstract;
+using Business.Rules;
 using DataAccess.Abstract;
 using Entities;
-using Spring.Expressions;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Business.Concrete
+namespace Business.Concrete;
+
+public class BrandManager : IBrandService
 {
-    public class BrandManager : IBrandService
+    private readonly IBrandDal _brandDal;
+    private readonly BrandBusinessRules _rules;
+
+    public BrandManager(IBrandDal brandDal, BrandBusinessRules rules)
     {
-        private IBrandDal _brandDal;
+        _brandDal = brandDal;
+        _rules = rules;
+    }
 
-        public BrandManager(IBrandDal brandDal)
-        {
-            _brandDal = brandDal;
-        }
+    public void Add(Brand brand)
+    {
+        _rules.ValidateBrand(brand);
+        _rules.CheckIfBrandExistsByName(brand.Name);
+        _rules.CapitalizeBrandName(brand);
+        _brandDal.Add(brand);
+    }
 
-        public void Add(Brand brand)
-        {
-            CheckIfBrandExistsByName(brand.Name);
-            CapitalizeBrandName(brand);
-            _brandDal.Add(brand);
-        }
+    public void Delete(int id)
+    {
+        _rules.CheckIfBrandExists(id); // Defensive Coding
+        _brandDal.Delete(id);
+    }
 
-        public void Delete(int id)
-        {
-            CheckIfBrandExists(id); // Defensive Coding
-            _brandDal.Delete(id);
-        }
+    public List<Brand> GetAll()
+    {
+        return _brandDal.GetAll();
+    }
 
-        public List<Brand> GetAll()
-        {
-            return _brandDal.GetAll();
-        }
+    public Brand GetById(int id)
+    {
+        _rules.CheckIfBrandExists(id);
+        return _brandDal.Get(b => b.Id == id);
+    }
 
-        public Brand GetById(int id)
-        {
-            CheckIfBrandExists(id);
-            return _brandDal.Get(b => b.Id == id);
-        }
+    public void Update(Brand brand)
+    {
+        _rules.CheckIfBrandExists(brand.Id);
+        _rules.CapitalizeBrandName(brand);
+        _brandDal.Update(brand);
+    }
 
-        public void Update(Brand brand)
-        {
-            CheckIfBrandExists(brand.Id);
-            CapitalizeBrandName(brand);
-            _brandDal.Update(brand);
-        }
-
-        public Brand GetByName(string name)
-        {
-            return _brandDal.Get(b => b.Name.ToLower() == name.ToLower());
-        }
-
-        // Business Rules
-        private void CheckIfBrandExistsByName(string brandName)
-        {
-            if (_brandDal.Get(b => b.Name.ToLower() == brandName.ToLower()) != null)
-            {
-                throw new Exception("Marka zaten kayıtlı");
-            }
-        }
-
-        private void CheckIfBrandExists(int id)
-        {
-            if (_brandDal.Get(b => b.Id == id) == null)
-            {
-                throw new Exception("Böyle bir kayıt bulunamadı.");
-            }
-        }
-
-        private void CapitalizeBrandName(Brand brand)
-        {
-            TextInfo txtInfo = new CultureInfo("tr-TR", false).TextInfo;
-            brand.Name =  txtInfo.ToTitleCase(brand.Name);
-        }
+    public Brand GetByName(string name)
+    {
+        return _brandDal.Get(b => b.Name.ToLower() == name.ToLower());
     }
 }

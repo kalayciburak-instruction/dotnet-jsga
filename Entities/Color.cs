@@ -1,17 +1,10 @@
-﻿using Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using Core.Entities;
 
-namespace Entities
+namespace Entities;
+
+public class Color : IEntity
 {
-    public class Color : IEntity
-    {
-        [Key]
-        public int Id { get; set; }
-        public string Name { get; set; }
-    }
+    [Key] public int Id { get; set; }
+    public string Name { get; set; }
 }

@@ -47,9 +47,9 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
-            "Spring.Core": {
+            "FluentValidation": {
               "target": "Package",
-              "version": "[3.0.1, )"
+              "version": "[11.5.2, )"
             }
           },
           "imports": [
