@@ -13,5 +13,6 @@ namespace Entities.Dto
         public string ColorName { get; set; }
         public int ModelYear { get; set; }
         public double DailyPrice { get; set; }
+        public string Plate { get; set; }
     }
 }

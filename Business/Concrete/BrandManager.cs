@@ -21,7 +21,7 @@ public class BrandManager : IBrandService
     {
         _rules.ValidateBrand(brand);
         _rules.CheckIfBrandExistsByName(brand.Name);
-        _rules.CapitalizeBrandName(brand);
+        CapitalizeBrandName(brand);
         _brandDal.Add(brand);
     }
 
@@ -45,12 +45,18 @@ public class BrandManager : IBrandService
     public void Update(Brand brand)
     {
         _rules.CheckIfBrandExists(brand.Id);
-        _rules.CapitalizeBrandName(brand);
+        CapitalizeBrandName(brand);
         _brandDal.Update(brand);
     }
 
     public Brand GetByName(string name)
     {
         return _brandDal.Get(b => b.Name.ToLower() == name.ToLower());
+    }
+
+    private void CapitalizeBrandName(Brand brand)
+    {
+        var txtInfo = new CultureInfo("tr-TR", false).TextInfo;
+        brand.Name = txtInfo.ToTitleCase(brand.Name);
     }
 }

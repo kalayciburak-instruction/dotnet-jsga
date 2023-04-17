@@ -49,11 +49,5 @@ namespace Business.Rules
             if (_brandDal.Get(b => b.Id == id) == null) 
                 throw new ValidationException(Messages.Brand.NotExists);
         }
-
-        public void CapitalizeBrandName(Brand brand)
-        {
-            var txtInfo = new CultureInfo("tr-TR", false).TextInfo;
-            brand.Name = txtInfo.ToTitleCase(brand.Name);
-        }
     }
 }

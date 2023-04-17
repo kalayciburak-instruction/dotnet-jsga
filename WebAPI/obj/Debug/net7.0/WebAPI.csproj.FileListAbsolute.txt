@@ -45,3 +45,4 @@ C:\Users\Burak\Desktop\Coder\C#\RentACar-Backend\WebAPI\bin\Debug\net7.0\Core.pd
 C:\Users\Burak\Desktop\Coder\C#\RentACar-Backend\WebAPI\bin\Debug\net7.0\DataAccess.pdb
 C:\Users\Burak\Desktop\Coder\C#\RentACar-Backend\WebAPI\bin\Debug\net7.0\Entities.pdb
 C:\Users\Burak\Desktop\Coder\C#\RentACar-Backend\WebAPI\bin\Debug\net7.0\FluentValidation.dll
+C:\Users\Burak\Desktop\Coder\C#\RentACar-Backend\WebAPI\bin\Debug\net7.0\Newtonsoft.Json.dll

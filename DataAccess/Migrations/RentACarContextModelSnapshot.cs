@@ -62,11 +62,13 @@ namespace DataAccess.Migrations
                     b.Property<int>("ModelYear")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Plate")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BrandId");
-
-                    b.HasIndex("ColorId");
 
                     b.ToTable("Cars");
                 });
@@ -86,25 +88,6 @@ namespace DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Colors");
-                });
-
-            modelBuilder.Entity("Entities.Car", b =>
-                {
-                    b.HasOne("Entities.Brand", "Brand")
-                        .WithMany()
-                        .HasForeignKey("BrandId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Entities.Color", "Color")
-                        .WithMany()
-                        .HasForeignKey("ColorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Brand");
-
-                    b.Navigation("Color");
                 });
 #pragma warning restore 612, 618
         }

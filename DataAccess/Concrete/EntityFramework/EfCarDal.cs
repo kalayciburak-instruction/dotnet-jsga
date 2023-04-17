@@ -19,7 +19,8 @@ public class EfCarDal : EfEntityRepositoryBase<Car, RentACarContext>, ICarDal
                          BrandName = brand.Name,
                          ColorName = color.Name,
                          DailyPrice = car.DailyPrice,
-                         ModelYear = car.ModelYear
+                         ModelYear = car.ModelYear,
+                         Plate = car.Plate
                      };
 
         return result.ToList();
