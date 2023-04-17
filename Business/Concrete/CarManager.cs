@@ -29,9 +29,24 @@ namespace Business.Concrete
             _carDal.Delete(id);
         }
 
-        public List<Car> GetAll()
+        public List<Car> GetAll(int? brandId = null, int? colorId = null)
         {
-            return _carDal.GetAll();
+            if (brandId.HasValue && colorId.HasValue)
+            {
+                return _carDal.GetAll(c => c.BrandId == brandId.Value && c.ColorId == colorId.Value);
+            }
+            else if (brandId.HasValue)
+            {
+                return _carDal.GetAll(c => c.BrandId == brandId.Value);
+            }
+            else if (colorId.HasValue)
+            {
+                return _carDal.GetAll(c => c.ColorId == colorId.Value);
+            }
+            else
+            {
+                return _carDal.GetAll();
+            }
         }
 
         public Car GetById(int id)

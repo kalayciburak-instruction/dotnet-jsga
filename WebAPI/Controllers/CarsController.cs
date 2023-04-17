@@ -16,7 +16,14 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult GetAll(int? brandId = null, int? colorId = null)
+        {
+            var result = _service.GetAll(brandId, colorId);
+            return Ok(result);
+        }
+
+        [HttpGet("/details")]
+        public IActionResult GetDetails()
         {
             var result = _service.GetCarDetails();
             return Ok(result);
@@ -29,10 +36,16 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpPost()]
+        [HttpPost]
         public void Add(Car car)
         {
             _service.Add(car);
+        }
+
+        [HttpPut]
+        public void Update(Car car)
+        {
+            _service.Update(car);
         }
 
         [HttpDelete("{id}")]
