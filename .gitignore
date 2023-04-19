@@ -1,0 +1,60 @@
+# Ignore .NET artifacts
+*.obj
+*.exe
+*.dll
+*.pdb
+*.user
+*.ncb
+*.suo
+*.cache
+*.log
+*.vspscc
+bin/
+obj/
+TestResults/
+[Bb]in
+[Dd]ebug*/
+[Rr]elease*/
+_UpgradeReport_Files/
+UpgradeLog.XML
+packages/
+*.dbmdl
+
+# Ignore build results
+[Bb]uild/
+
+# Ignore NuGet packages
+*.nupkg
+!.nuget/
+packages/
+*.ide
+
+# Ignore MSTest test results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# Ignore Resharper files
+_ReSharper*/
+*.ReSharper*
+
+# Ignore Visual Studio files
+.vs/
+*.sln.iml
+*.suo
+*.sln.DotSettings.user
+[Tt]humbs.db
+*.v11.suo
+*.v12.suo
+*.v15.suo
+*.suo.user
+
+# Ignore Rider files
+.idea/
+*.iml
+*.ipr
+*.iws
+*.resharper
+*.csproj.DotSettings.user
+*.sln.iml
+*.sln.DotSettings.user
+.idea_modules/
