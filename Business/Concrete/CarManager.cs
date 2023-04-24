@@ -24,6 +24,7 @@ namespace Business.Concrete
 
         public void Add(Car car)
         {
+            _rules.ValidateCar(car);
             _rules.CheckIfCarExistsByPlate(car.Plate);
             _rules.CheckIfPlateIsValid(car.Plate);
             _carDal.Add(car);
@@ -60,22 +61,19 @@ namespace Business.Concrete
 
         private List<Car> GetCarsByBrandAndColor(int? brandId, int? colorId)
         {
-            if (brandId.HasValue && colorId.HasValue)
+            var cars = _carDal.GetAll();
+
+            if (brandId.HasValue)
             {
-                return _carDal.GetAll(c => c.BrandId == brandId.Value && c.ColorId == colorId.Value);
+                cars = cars.Where(c => c.BrandId == brandId.Value).ToList();
             }
-            else if (brandId.HasValue)
+
+            if (colorId.HasValue)
             {
-                return _carDal.GetAll(c => c.BrandId == brandId.Value);
+                cars = cars.Where(c => c.ColorId == colorId.Value).ToList();
             }
-            else if (colorId.HasValue)
-            {
-                return _carDal.GetAll(c => c.ColorId == colorId.Value);
-            }
-            else
-            {
-                return _carDal.GetAll();
-            }
+
+            return cars;
         }
     }
 }

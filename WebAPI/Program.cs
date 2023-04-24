@@ -1,12 +1,16 @@
 ﻿using Business.Abstract;
 using Business.Concrete;
 using Business.Rules;
+using Business.Rules.Validation;
 using Business.Rules.Validation.FluentValidation;
+using Core.Entities;
 using Core.Middlewares;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,12 +24,12 @@ builder.Services.AddSingleton<IBrandDal, EfBrandDal>()
                 .AddSingleton<ICarService, CarManager>()
                 .AddSingleton<BrandBusinessRules>()
                 .AddSingleton<BrandValidator>()
-                .AddSingleton<CarBusinessRules>();
+                .AddSingleton<CarBusinessRules>()
+                .AddSingleton<CarValidator>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 var app = builder.Build();
 
 app.UseMiddleware<ExceptionMiddleware>();

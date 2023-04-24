@@ -1,7 +1,9 @@
 ﻿using Business.Constants;
+using Business.Rules.Validation.FluentValidation;
 using Core.Exceptions;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
+using Entities;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -15,15 +17,27 @@ namespace Business.Rules
     public class CarBusinessRules
     {
         private readonly ICarDal _carDal;
+        private readonly CarValidator _validator;
 
-        public CarBusinessRules(ICarDal carDal)
+        public CarBusinessRules(ICarDal carDal, CarValidator validator)
         {
             _carDal = carDal;
+            _validator = validator;
+        }
+
+        public void ValidateCar(Car car)
+        {
+            var result = _validator.Validate(car);
+            if (!result.IsValid)
+            {
+                var errors = string.Join(", ", result.Errors.Select(e => $"[{e.PropertyName}: {e.ErrorMessage}]"));
+                throw new ValidationException(errors);
+            }
         }
 
         public void CheckIfCarExists(int id)
         {
-            if(_carDal.Get(c => c.Id == id) == null)
+            if (_carDal.Get(c => c.Id == id) == null)
             {
                 throw new BusinessException(Messages.Car.NotExists);
             }

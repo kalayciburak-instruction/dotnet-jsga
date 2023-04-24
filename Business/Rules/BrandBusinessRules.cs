@@ -1,5 +1,6 @@
 ﻿using Business.Constants;
 using Business.Rules.Validation.FluentValidation;
+using Core.Exceptions;
 using DataAccess.Abstract;
 using Entities;
 using FluentValidation;
@@ -28,13 +29,8 @@ namespace Business.Rules
             var result = _validator.Validate(brand);
             if (!result.IsValid)
             {
-                string errorMessage = "";
-                foreach (var error in result.Errors)
-                {
-                    errorMessage += error.PropertyName + " : " + error.ErrorMessage + "\n";
-                }
-
-                throw new ValidationException(errorMessage);
+                var errors = string.Join(", ", result.Errors.Select(e => $"[{e.PropertyName}: {e.ErrorMessage}]"));
+                throw new ValidationException(errors);
             }
         }
 
