@@ -14,25 +14,29 @@ namespace Business.Concrete
     public class CarManager : ICarService
     {
         private readonly ICarDal _carDal;
-        private readonly CarBusinessRules _rules;
+        private readonly CarBusinessRules _carRules;
+        private readonly BrandBusinessRules _brandRules;
 
-        public CarManager(ICarDal carDal, CarBusinessRules rules)
+        public CarManager(ICarDal carDal, CarBusinessRules carRules, BrandBusinessRules brandRules)
         {
             _carDal = carDal;
-            _rules = rules;
+            _carRules = carRules;
+            _brandRules = brandRules;
         }
 
         public void Add(Car car)
         {
-            _rules.ValidateCar(car);
-            _rules.CheckIfCarExistsByPlate(car.Plate);
-            _rules.CheckIfPlateIsValid(car.Plate);
+            _brandRules.CheckIfBrandExists(car.BrandId);
+            _carRules.ValidateCar(car);
+            _carRules.CheckIfCarExistsByPlate(car.Plate);
+            _carRules.CheckIfPlateIsValid(car.Plate);
+            car.State = CarState.Available;
             _carDal.Add(car);
         }
 
         public void Delete(int id)
         {
-            _rules.CheckIfCarExists(id);
+            _carRules.CheckIfCarExists(id);
             _carDal.Delete(id);
         }
 
@@ -43,13 +47,14 @@ namespace Business.Concrete
 
         public Car GetById(int id)
         {
-            _rules.CheckIfCarExists(id);
+            _carRules.CheckIfCarExists(id);
             return _carDal.Get(c => c.Id == id);
         }
 
         public void Update(Car car)
         {
-            _rules.CheckIfCarExists(car.Id);
+            _carRules.CheckIfCarExists(car.Id);
+            _brandRules.CheckIfBrandExists(car.BrandId);
             _carDal.Update(car);
         }
 

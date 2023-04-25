@@ -11,6 +11,7 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Car> Cars { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Color> Colors { get; set; }
+        public DbSet<CarImage> CarImages { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -32,6 +33,36 @@ namespace DataAccess.Concrete.EntityFramework
             }
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Car>(car =>
+            {
+                car.HasOne<Brand>()
+                    .WithMany()
+                    .HasForeignKey(c => c.BrandId)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .IsRequired();
+            });
 
+            modelBuilder.Entity<Car>(car =>
+            {
+                car.HasIndex(c => c.ColorId).IsUnique(false);
+                car.HasOne<Color>()
+                    .WithMany()
+                    .HasForeignKey(c => c.ColorId)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .IsRequired();
+            });
+
+            modelBuilder.Entity<CarImage>(image =>
+            {
+                image.HasIndex(i => i.CarId).IsUnique(false);
+                image.HasOne<Car>()
+                      .WithMany()
+                      .HasForeignKey(i => i.CarId)
+                      .OnDelete(DeleteBehavior.Restrict)
+                      .IsRequired();
+            });
+        }
     }
 }

@@ -16,5 +16,7 @@ public class Car : IEntity
     public double DailyPrice { get; set; }
     public string Plate { get; set; }
     public string Description { get; set; }
-    public int State { get; set; } // 0 - Available , 1 - Rented , 2 - Maintenance
+    [EnumDataType(typeof(CarState))]
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+    public CarState State { get; set; }
 }
