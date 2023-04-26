@@ -1,4 +1,6 @@
 ﻿using Entities;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +13,8 @@ namespace Business.Abstract
     {
         List<CarImage> GetAll();
         CarImage GetById(int id);
-        void Add(CarImage carImage);
-        void Update(CarImage carImage);
+        void Add(CarImage carImage, IFormFile formFile);
+        void Update(CarImage carImage, IFormFile formFile);
         void Delete(int id);
     }
 }

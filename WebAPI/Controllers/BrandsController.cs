@@ -43,7 +43,6 @@ public class BrandsController : Controller
     }
 
     [HttpPut]
-    // TODO: Update this method
     public void Update(Brand brand)
     {
         _service.Update(brand);

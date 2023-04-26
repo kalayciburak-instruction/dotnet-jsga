@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebAPI.Controllers
 {
     [ApiController]
-    [Route("api/colors")]
-    public class ColorsController : Controller
+    [Route("api/cars/images")]
+    public class CarImagesController : Controller
     {
-        private readonly IColorService _service;
+        private readonly ICarImageService _service;
 
-        public ColorsController(IColorService service)
+        public CarImagesController(ICarImageService service)
         {
             _service = service;
         }
@@ -30,15 +30,15 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public void Add(Color color)
+        public void Add([FromForm] CarImage carImage, [FromForm(Name = "image")] IFormFile formFile)
         {
-            _service.Add(color);
+            _service.Add(carImage, formFile);
         }
 
         [HttpPut]
-        public void Update(Color color)
+        public void Update([FromForm] CarImage carImage, [FromForm(Name = "image")] IFormFile formFile)
         {
-            _service.Update(color);
+            _service.Update(carImage, formFile);
         }
 
         [HttpDelete("{id}")]

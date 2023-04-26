@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Core.Utilities.Helpers.FileHelper;
 
 namespace Business.DependencyResolvers
 {
@@ -23,10 +24,16 @@ namespace Business.DependencyResolvers
                     .AddSingleton<ICarService, CarManager>()
                     .AddSingleton<IColorDal, EfColorDal>()
                     .AddSingleton<IColorService, ColorManager>()
+                    .AddSingleton<IRentalDal, EfRentalDal>()
+                    .AddSingleton<IRentalService,RentalManager>()
+                    .AddSingleton<RentalBusinessRules>()
+                    .AddSingleton<ICarImageDal, EfCarImageDal>()
+                    .AddSingleton<ICarImageService, CarImageManager>()
                     .AddSingleton<BrandBusinessRules>()
                     .AddSingleton<BrandValidator>()
                     .AddSingleton<CarBusinessRules>()
-                    .AddSingleton<CarValidator>();
+                    .AddSingleton<CarValidator>()
+                    .AddSingleton<IFileHelper, FileHelper>();
 
             return services;
         }

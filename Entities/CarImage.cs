@@ -12,7 +12,7 @@ namespace Entities
     {
         [Key] public int Id { get; set; }
         public int CarId { get; set; }
-        public string Path { get; set; }
+        public string? Path { get; set; }
         public DateTime CreatedAt { get; set; }
     }
 }

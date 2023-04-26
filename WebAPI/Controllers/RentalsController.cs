@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebAPI.Controllers
 {
     [ApiController]
-    [Route("api/colors")]
-    public class ColorsController : Controller
+    [Route("api/rentals")]
+    public class RentalsController : Controller
     {
-        private readonly IColorService _service;
+        private readonly IRentalService _service;
 
-        public ColorsController(IColorService service)
+        public RentalsController(IRentalService service)
         {
             _service = service;
         }
@@ -30,15 +30,15 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public void Add(Color color)
+        public void Add(Rental rental)
         {
-            _service.Add(color);
+            _service.Add(rental);
         }
 
         [HttpPut]
-        public void Update(Color color)
+        public void Update(Rental rental)
         {
-            _service.Update(color);
+            _service.Update(rental);
         }
 
         [HttpDelete("{id}")]

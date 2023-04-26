@@ -1,6 +1,9 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Helpers.FileHelper;
 using DataAccess.Abstract;
 using Entities;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,35 +15,45 @@ namespace Business.Concrete
     public class CarImageManager : ICarImageService
     {
         private readonly ICarImageDal _imageDal;
+        private readonly IFileHelper _fileHelper;
 
-        public CarImageManager(ICarImageDal imageDal)
+        public CarImageManager(ICarImageDal imageDal, IFileHelper fileHelper)
         {
             _imageDal = imageDal;
+            _fileHelper = fileHelper;
         }
 
-        public void Add(CarImage carImage)
+        public void Add(CarImage carImage, IFormFile formFile)
         {
-            throw new NotImplementedException();
+            carImage.Path = _fileHelper.AddFile(formFile, Paths.Car.Image);
+            carImage.CreatedAt = DateTime.Now;
+
+            _imageDal.Add(carImage);
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var carImage = GetById(id);
+            _fileHelper.DeleteFile(Paths.Car.Image + carImage.Path);
+            _imageDal.Delete(id);
         }
 
         public List<CarImage> GetAll()
         {
-            throw new NotImplementedException();
+            return _imageDal.GetAll();
         }
 
         public CarImage GetById(int id)
         {
-            throw new NotImplementedException();
+            return _imageDal.Get(i => i.Id == id);
         }
 
-        public void Update(CarImage carImage)
+        public void Update(CarImage carImage, IFormFile formFile)
         {
-            throw new NotImplementedException();
+            carImage.Path = _fileHelper.UpdateFile(formFile, carImage.Path, Paths.Car.Image);
+            carImage.CreatedAt = DateTime.Now;
+
+            _imageDal.Update(carImage);
         }
     }
 }

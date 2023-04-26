@@ -11,7 +11,9 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Car> Cars { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Color> Colors { get; set; }
+        public DbSet<Rental> Rentals { get; set; }
         public DbSet<CarImage> CarImages { get; set; }
+        public DbSet<Payment> Payments { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -55,6 +57,16 @@ namespace DataAccess.Concrete.EntityFramework
             });
 
             modelBuilder.Entity<CarImage>(image =>
+            {
+                image.HasIndex(i => i.CarId).IsUnique(false);
+                image.HasOne<Car>()
+                      .WithMany()
+                      .HasForeignKey(i => i.CarId)
+                      .OnDelete(DeleteBehavior.Restrict)
+                      .IsRequired();
+            });
+
+            modelBuilder.Entity<Rental>(image =>
             {
                 image.HasIndex(i => i.CarId).IsUnique(false);
                 image.HasOne<Car>()

@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Rules;
+using Core.Exceptions;
 using DataAccess.Abstract;
 using Entities;
 using Entities.Dto;
@@ -79,6 +80,13 @@ namespace Business.Concrete
             }
 
             return cars;
+        }
+
+        public void ChangeState(int carId, CarState state)
+        {
+            var car = GetById(carId);
+            car.State = state;
+            _carDal.Update(car);
         }
     }
 }

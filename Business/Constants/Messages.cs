@@ -19,6 +19,7 @@ namespace Business.Constants // Sabitler
             public static string NotExists = "CAR_NOT_EXISTS";
             public static string AlreadyExists = "CAR_ALREADY_EXISTS";
             public static string InvalidPlate = "PLATE_IS_NOT_VALID";
+            public static string CarNotAvailable = "CAR_NOT_AVAILABLE";
         }
     }
 }

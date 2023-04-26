@@ -91,10 +91,9 @@ namespace DataAccess.Migrations
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Path")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -121,6 +120,39 @@ namespace DataAccess.Migrations
                     b.ToTable("Colors");
                 });
 
+            modelBuilder.Entity("Entities.Rental", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CarId")
+                        .HasColumnType("integer");
+
+                    b.Property<double>("DailyPrice")
+                        .HasColumnType("double precision");
+
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int>("RentedForDays")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<double>("TotalPrice")
+                        .HasColumnType("double precision");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarId");
+
+                    b.ToTable("Rentals");
+                });
+
             modelBuilder.Entity("Entities.Car", b =>
                 {
                     b.HasOne("Entities.Brand", null)
@@ -137,6 +169,15 @@ namespace DataAccess.Migrations
                 });
 
             modelBuilder.Entity("Entities.CarImage", b =>
+                {
+                    b.HasOne("Entities.Car", null)
+                        .WithMany()
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Entities.Rental", b =>
                 {
                     b.HasOne("Entities.Car", null)
                         .WithMany()
