@@ -1,5 +1,4 @@
 ﻿using Entities;
-using Entities.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Business.Abstract
 {
-    public interface IRentalService
+    public interface IInvoiceService
     {
-        List<Rental> GetAll();
-        Rental GetById(int id);
-        void Add(RentalDto rentalDto);
-        void Update(Rental rental);
+        List<Invoice> GetAll();
+        Invoice GetById(int id);
+        void Add(Invoice invoice);
+        void Update(Invoice invoice);
         void Delete(int id);
     }
 }

@@ -25,11 +25,8 @@ namespace Business.Concrete
 
         public void Add(Payment payment)
         {
-            if (_paymentDal.Get(p => p.CardNumber == payment.CardNumber) != null)
-            {
-                throw new BusinessException("NOT_A_VALID_CARD");
-            }
-
+            _rules.CheckIfCardAlreadyExists(payment.CardNumber);
+            _rules.ValidatePayment(payment);
             _paymentDal.Add(payment);
         }
 

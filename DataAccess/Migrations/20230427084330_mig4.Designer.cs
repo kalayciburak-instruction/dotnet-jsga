@@ -3,6 +3,7 @@ using System;
 using DataAccess.Concrete.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(RentACarContext))]
-    partial class RentACarContextModelSnapshot : ModelSnapshot
+    [Migration("20230427084330_mig4")]
+    partial class mig4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -118,46 +121,6 @@ namespace DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Colors");
-                });
-
-            modelBuilder.Entity("Entities.Invoice", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("BrandName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("CardHolder")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<double>("DailyPrice")
-                        .HasColumnType("double precision");
-
-                    b.Property<int>("ModelYear")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Plate")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("RentedAt")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<int>("RentedForDays")
-                        .HasColumnType("integer");
-
-                    b.Property<double>("TotalPrice")
-                        .HasColumnType("double precision");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Invoices");
                 });
 
             modelBuilder.Entity("Entities.Payment", b =>

@@ -14,6 +14,7 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Rental> Rentals { get; set; }
         public DbSet<CarImage> CarImages { get; set; }
         public DbSet<Payment> Payments { get; set; }
+        public DbSet<Invoice> Invoices { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

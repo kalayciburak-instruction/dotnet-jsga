@@ -18,21 +18,35 @@ namespace Business.DependencyResolvers
     {
         public static IServiceCollection RegisterBusinessServices(this IServiceCollection services)
         {
-            services.AddSingleton<IBrandDal, EfBrandDal>()
-                    .AddSingleton<IBrandService, BrandManager>()
-                    .AddSingleton<ICarDal, EfCarDal>()
+            services.AddSingleton<ICarDal, EfCarDal>()
                     .AddSingleton<ICarService, CarManager>()
+                    .AddSingleton<CarBusinessRules>()
+                    .AddSingleton<CarValidator>()
+
+                    .AddSingleton<IBrandDal, EfBrandDal>()
+                    .AddSingleton<IBrandService, BrandManager>()
+                    .AddSingleton<BrandBusinessRules>()
+                    .AddSingleton<BrandValidator>()
+
                     .AddSingleton<IColorDal, EfColorDal>()
                     .AddSingleton<IColorService, ColorManager>()
+
+                    .AddSingleton<ICarImageDal, EfCarImageDal>()
+                    .AddSingleton<ICarImageService, CarImageManager>()
+
                     .AddSingleton<IRentalDal, EfRentalDal>()
                     .AddSingleton<IRentalService,RentalManager>()
                     .AddSingleton<RentalBusinessRules>()
-                    .AddSingleton<ICarImageDal, EfCarImageDal>()
-                    .AddSingleton<ICarImageService, CarImageManager>()
-                    .AddSingleton<BrandBusinessRules>()
-                    .AddSingleton<BrandValidator>()
-                    .AddSingleton<CarBusinessRules>()
-                    .AddSingleton<CarValidator>()
+
+                    .AddSingleton<IPaymentDal, EfPaymentDal>()
+                    .AddSingleton<IPaymentService, PaymentManager>()
+                    .AddSingleton<PaymentBusinessRules>()
+                    .AddSingleton<PaymentValidator>()
+                    .AddSingleton<PaymentDtoValidator>()
+
+                    .AddSingleton<IInvoiceDal, EfInvoiceDal>()
+                    .AddSingleton<IInvoiceService, InvoiceManager>()
+
                     .AddSingleton<IFileHelper, FileHelper>();
 
             return services;

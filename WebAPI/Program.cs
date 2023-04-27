@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Concrete;
 using Business.DependencyResolvers;
+using Business.Mappers;
 using Business.Rules;
 using Business.Rules.Validation;
 using Business.Rules.Validation.FluentValidation;
@@ -18,6 +19,7 @@ var builder = WebApplication.CreateBuilder(args);
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 // Add services to the container.
 
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddControllers();
 builder.Services.RegisterBusinessServices();
 builder.Services.AddDirectoryBrowser();

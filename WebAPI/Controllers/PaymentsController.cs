@@ -1,17 +1,16 @@
 ﻿using Business.Abstract;
 using Entities;
-using Entities.Dto;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
     [ApiController]
-    [Route("api/rentals")]
-    public class RentalsController : Controller
+    [Route("api/payments")]
+    public class PaymentsController : Controller
     {
-        private readonly IRentalService _service;
+        private readonly IPaymentService _service;
 
-        public RentalsController(IRentalService service)
+        public PaymentsController(IPaymentService service)
         {
             _service = service;
         }
@@ -31,15 +30,15 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public void Add(RentalDto rentalDto)
+        public void Add(Payment payment)
         {
-            _service.Add(rentalDto);
+            _service.Add(payment);
         }
 
         [HttpPut]
-        public void Update(Rental rental)
+        public void Update(Payment payment)
         {
-            _service.Update(rental);
+            _service.Update(payment);
         }
 
         [HttpDelete("{id}")]

@@ -1,9 +1,11 @@
-﻿using Business.Abstract;
+﻿using AutoMapper;
+using Business.Abstract;
 using Business.Constants;
 using Business.Rules;
 using Core.Exceptions;
 using DataAccess.Abstract;
 using Entities;
+using Entities.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,23 +18,39 @@ namespace Business.Concrete
     {
         private readonly IRentalDal _rentalDal;
         private readonly ICarService _carService;
+        private readonly IPaymentService _paymentService;
+        private readonly IInvoiceService _invoiceService;
         private readonly RentalBusinessRules _rules;
+        private readonly IMapper _mapper;
 
-        public RentalManager(IRentalDal rentalDal, ICarService carService, RentalBusinessRules rules)
+        public RentalManager(IRentalDal rentalDal, ICarService carService, IPaymentService paymentService, IInvoiceService invoiceService, RentalBusinessRules rules, IMapper mapper)
         {
             _rentalDal = rentalDal;
             _carService = carService;
+            _paymentService = paymentService;
+            _invoiceService = invoiceService;
             _rules = rules;
+            _mapper = mapper;
         }
 
-        public void Add(Rental rental)
+        public void Add(RentalDto rentalDto)
         {
+            var rental = _mapper.Map<Rental>(rentalDto);
             _rules.CheckIfCarAvailable(_carService.GetById(rental.CarId).State);
             rental.TotalPrice = rental.DailyPrice * rental.RentedForDays;
             rental.StartDate = DateTime.Now;
             rental.EndDate = null;
+
+            // Payment
+            _rules.ValidatePaymentDto(rentalDto.Payment);
+            rentalDto.Payment.Price = rental.TotalPrice;
+            _paymentService.ProcessPayment(rentalDto.Payment);
+
             _rentalDal.Add(rental);
             _carService.ChangeState(rental.CarId, CarState.Rented);
+
+            // Invoice
+            AddInvoice(rentalDto, rental);
         }
 
         public void Delete(int id)
@@ -55,6 +73,23 @@ namespace Business.Concrete
         public void Update(Rental rental)
         {
             throw new NotImplementedException();
+        }
+
+        private void AddInvoice(RentalDto rentalDto, Rental rental)
+        {
+            var invoice = new Invoice();
+            var carDetail = _carService.GetCarDetailById(rental.CarId);
+
+            invoice.CardHolder = rentalDto.Payment.CardHolder;
+            invoice.BrandName = carDetail.BrandName;
+            invoice.Plate = carDetail.Plate;
+            invoice.DailyPrice = rental.DailyPrice;
+            invoice.RentedForDays = rental.RentedForDays;
+            invoice.ModelYear = carDetail.ModelYear;
+            invoice.RentedAt = rental.StartDate;
+            invoice.TotalPrice = rental.TotalPrice;
+
+            _invoiceService.Add(invoice);
         }
     }
 }
