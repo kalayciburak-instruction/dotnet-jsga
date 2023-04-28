@@ -13,6 +13,7 @@ namespace Entities
         [Key] public int Id { get; set; }
         public string CardHolder { get; set; }
         public string BrandName { get; set; }
+        public string ImagePath { get; set; }
         public string Plate { get; set; }
         public int ModelYear { get; set; }
         public double DailyPrice { get; set; }

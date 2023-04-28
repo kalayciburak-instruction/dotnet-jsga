@@ -1,6 +1,6 @@
 ﻿using Entities;
 
-namespace Business.Abstract;
+namespace Core.Abstract;
 
 public interface IBrandService
 {

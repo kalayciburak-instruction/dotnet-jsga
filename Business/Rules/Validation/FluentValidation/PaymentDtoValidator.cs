@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Rules.Validation.FluentValidation
+namespace Core.Rules.Validation.FluentValidation
 {
     public class PaymentDtoValidator : AbstractValidator<PaymentDto>
     {

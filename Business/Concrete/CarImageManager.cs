@@ -1,5 +1,5 @@
-﻿using Business.Abstract;
-using Business.Constants;
+﻿using Core.Abstract;
+using Core.Utilities.Constants;
 using Core.Utilities.Helpers.FileHelper;
 using DataAccess.Abstract;
 using Entities;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Concrete
+namespace Core.Concrete
 {
     public class CarImageManager : ICarImageService
     {
@@ -25,7 +25,7 @@ namespace Business.Concrete
 
         public void Add(CarImage carImage, IFormFile formFile)
         {
-            carImage.Path = _fileHelper.AddFile(formFile, Paths.Car.Image);
+            carImage.Path = _fileHelper.AddFile(formFile, Paths.Car.Root);
             carImage.CreatedAt = DateTime.Now;
 
             _imageDal.Add(carImage);
@@ -34,7 +34,7 @@ namespace Business.Concrete
         public void Delete(int id)
         {
             var carImage = GetById(id);
-            _fileHelper.DeleteFile(Paths.Car.Image + carImage.Path);
+            _fileHelper.DeleteFile(Paths.Car.Root + carImage.Path);
             _imageDal.Delete(id);
         }
 
@@ -50,7 +50,7 @@ namespace Business.Concrete
 
         public void Update(CarImage carImage, IFormFile formFile)
         {
-            carImage.Path = _fileHelper.UpdateFile(formFile, carImage.Path, Paths.Car.Image);
+            carImage.Path = _fileHelper.UpdateFile(formFile, carImage.Path, Paths.Car.Root);
             carImage.CreatedAt = DateTime.Now;
 
             _imageDal.Update(carImage);

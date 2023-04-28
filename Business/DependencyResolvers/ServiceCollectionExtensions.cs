@@ -1,7 +1,7 @@
-﻿using Business.Abstract;
-using Business.Concrete;
-using Business.Rules.Validation.FluentValidation;
-using Business.Rules;
+﻿using Core.Abstract;
+using Core.Concrete;
+using Core.Rules.Validation.FluentValidation;
+using Core.Rules;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Core.Utilities.Helpers.FileHelper;
 
-namespace Business.DependencyResolvers
+namespace Core.DependencyResolvers
 {
     public static class ServiceCollectionExtensions
     {

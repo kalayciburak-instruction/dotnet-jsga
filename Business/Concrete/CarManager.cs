@@ -1,5 +1,5 @@
-﻿using Business.Abstract;
-using Business.Rules;
+﻿using Core.Abstract;
+using Core.Rules;
 using Core.Exceptions;
 using DataAccess.Abstract;
 using Entities;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Concrete
+namespace Core.Concrete
 {
     public class CarManager : ICarService
     {

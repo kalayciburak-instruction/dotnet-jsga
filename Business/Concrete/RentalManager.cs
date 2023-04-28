@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Business.Abstract;
-using Business.Constants;
-using Business.Rules;
+using Core.Abstract;
+using Core.Utilities.Constants;
+using Core.Rules;
 using Core.Exceptions;
 using DataAccess.Abstract;
 using Entities;
@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Concrete
+namespace Core.Concrete
 {
     public class RentalManager : IRentalService
     {
@@ -88,6 +88,7 @@ namespace Business.Concrete
             invoice.ModelYear = carDetail.ModelYear;
             invoice.RentedAt = rental.StartDate;
             invoice.TotalPrice = rental.TotalPrice;
+            invoice.ImagePath = carDetail.ImagePath;
 
             _invoiceService.Add(invoice);
         }

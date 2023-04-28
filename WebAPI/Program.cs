@@ -1,10 +1,10 @@
-﻿using Business.Abstract;
-using Business.Concrete;
-using Business.DependencyResolvers;
-using Business.Mappers;
-using Business.Rules;
-using Business.Rules.Validation;
-using Business.Rules.Validation.FluentValidation;
+﻿using Core.Abstract;
+using Core.Concrete;
+using Core.DependencyResolvers;
+using Core.Mappers;
+using Core.Rules;
+using Core.Rules.Validation;
+using Core.Rules.Validation.FluentValidation;
 using Core.Entities;
 using Core.Middlewares;
 using Core.Utilities.Results;
@@ -23,6 +23,15 @@ builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddControllers();
 builder.Services.RegisterBusinessServices();
 builder.Services.AddDirectoryBrowser();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "AllowAnyOrigin",
+        builder => builder
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+});
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -44,5 +53,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.UseCors("AllowAnyOrigin");
 app.Run();

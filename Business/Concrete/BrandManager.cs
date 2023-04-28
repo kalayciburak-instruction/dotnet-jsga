@@ -1,10 +1,10 @@
 ﻿using System.Globalization;
-using Business.Abstract;
-using Business.Rules;
+using Core.Abstract;
+using Core.Rules;
 using DataAccess.Abstract;
 using Entities;
 
-namespace Business.Concrete;
+namespace Core.Concrete;
 
 public class BrandManager : IBrandService
 {

@@ -1,5 +1,5 @@
-﻿using Business.Constants;
-using Business.Rules.Validation.FluentValidation;
+﻿using Core.Utilities.Constants;
+using Core.Rules.Validation.FluentValidation;
 using Core.Exceptions;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
@@ -12,7 +12,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Business.Rules
+namespace Core.Rules
 {
     public class CarBusinessRules
     {

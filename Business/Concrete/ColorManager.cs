@@ -1,4 +1,4 @@
-﻿using Business.Abstract;
+﻿using Core.Abstract;
 using DataAccess.Abstract;
 using Entities;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Concrete
+namespace Core.Concrete
 {
     public class ColorManager : IColorService
     {

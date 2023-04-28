@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Constants // Sabitler
+namespace Core.Utilities.Constants // Sabitler
 {
     public class Messages
     {

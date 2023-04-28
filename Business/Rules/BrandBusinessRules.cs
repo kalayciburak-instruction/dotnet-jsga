@@ -1,5 +1,5 @@
-﻿using Business.Constants;
-using Business.Rules.Validation.FluentValidation;
+﻿using Core.Utilities.Constants;
+using Core.Rules.Validation.FluentValidation;
 using Core.Exceptions;
 using DataAccess.Abstract;
 using Entities;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Rules
+namespace Core.Rules
 {
     public class BrandBusinessRules
     {

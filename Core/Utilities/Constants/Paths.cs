@@ -5,13 +5,14 @@ using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Constants
+namespace Core.Utilities.Constants
 {
     public class Paths
     {
         public static class Car
         {
-            public static string Image = "wwwroot\\images\\";
+            public static string Root = "wwwroot\\images\\";
+            public static string DefaultImage = "default-image.jpg";
         }
     }
 }

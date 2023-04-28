@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.Mappers
+namespace Core.Mappers
 {
     public class MappingProfile : Profile
     {
